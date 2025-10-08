@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+#include "lqr.h"
+using namespace std;
+
+int solve(int n, int q)
+{
+    int res = 0, l = 1, r = 1;
+    int prev_rep, curr_rep;
+    if ((n <= 25000 and q <= 1e5) or (n <= 1000 and q = 1e6))
+    {
+        while (r <= q)
+        {
+            if (query(l, r))
+            {
+                ++res;
+                i = j + 1;
+            }
+            ++j;
+        }
+        return res;
+    }
+    int block_cnt = trunc(sqrt(1e9));
+}

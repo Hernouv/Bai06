@@ -1,0 +1,1 @@
+{"name":"Local: lmfao","url":"c:\\Users\\My PC\\Downloads\\DatNgo-Tin\\doi tuyen\\lmfao.cpp","tests":[{"id":1723798943418,"input":"abba","output":"5"},{"id":1723799290247,"input":"aaaa","output":"8"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\My PC\\Downloads\\DatNgo-Tin\\doi tuyen\\lmfao.cpp","group":"local","local":true}

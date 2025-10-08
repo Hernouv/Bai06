@@ -1,0 +1,1 @@
+{"name":"Local: queue3","url":"c:\\Users\\My PC\\Downloads\\DatNgo-Tin\\Code tren lop\\queue3\\queue3.cpp","tests":[{"id":1710346667010,"input":"+1\n+3\n+2\n+3\n-\n+4\n+4\n-\n+2\n+9\n+7\n+8\n-","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\My PC\\Downloads\\DatNgo-Tin\\Code tren lop\\queue3\\queue3.cpp","group":"local","local":true}

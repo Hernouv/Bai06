@@ -1,0 +1,1 @@
+{"name":"Local: dulieu","url":"c:\\Users\\My PC\\Downloads\\DatNgo-Tin\\duyen hai 2023\\dulieu\\dulieu.cpp","tests":[{"id":1695173432350,"input":"5 2\n5 2 3 1 3\n1 5\n4 5","output":"8\n4"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\My PC\\Downloads\\DatNgo-Tin\\duyen hai 2023\\dulieu\\dulieu.cpp","group":"local","local":true}

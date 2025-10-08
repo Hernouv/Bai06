@@ -1,0 +1,4 @@
+Connected component 1: 7 6 5 
+Connected component 2: 4 3 2 
+Connected component 3: 11 10 9 8 
+Connected component 4: 1 

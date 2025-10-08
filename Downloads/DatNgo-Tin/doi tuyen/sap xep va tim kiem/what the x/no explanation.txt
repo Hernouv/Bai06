@@ -1,0 +1,4 @@
+find x such that |a1 - x| + |a2 - x| + |a3 - x| + ... + |an - x| is minimum.
+-sort a
+-if (n & 1) cout << 1;
+else cout << a[n / 2 + 1] - a[n / 2] + 1;

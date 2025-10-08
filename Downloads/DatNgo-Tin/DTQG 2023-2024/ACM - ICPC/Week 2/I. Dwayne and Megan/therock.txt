@@ -1,0 +1,86 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+long long res = 0;
+char grid[510][510];
+int num[510][510], ia = 0;
+int n, m;
+
+bool visited[30010];
+bool visited2[30010];
+int parent[30010];
+vector<int> graph[30010];
+int cc_no[30010], t = 0;
+int cc_size[30010];
+
+void dfs(int id)
+{
+    visited[id] = true;
+    cc_no[id] = t;
+    for (auto v : graph[id])
+    {
+        if (!visited[v])
+        {
+            ++cc_size[t];
+            parent[v] = id;
+            dfs(v);
+        }
+    }
+}
+
+int main()
+{
+    cin.tie(0)->sync_with_stdio(false);
+    cin >> n >> m;
+
+    for (int i = 0; i <= n + 1; ++i)
+        grid[i][0] = grid[i][m + 1] = '#';
+
+    for (int i = 0; i <= m + 1; ++i)
+        grid[0][i] = grid[n + 1][i] = '#';
+
+    for (int i = 1; i <= n; ++i)
+        for (int j = 1; j <= m; ++j)
+        {
+            cin >> grid[i][j];
+            if (grid[i][j] == '.')
+                num[i][j] = ++ia;
+        }
+
+    for (int i = 1; i <= n; ++i)
+        for (int j = 1; j <= m; ++j)
+            if (grid[i][j] == '.')
+            {
+                if (grid[i - 1][j] == '.')
+                {
+                    graph[num[i][j]].push_back(num[i - 1][j]);
+                }
+                if (grid[i + 1][j] == '.')
+                {
+                    graph[num[i][j]].push_back(num[i + 1][j]);
+                }
+                if (grid[i][j - 1] == '.')
+                {
+                    graph[num[i][j]].push_back(num[i][j - 1]);
+                }
+                if (grid[i][j + 1] == '.')
+                {
+                    graph[num[i][j]].push_back(num[i][j + 1]);
+                }
+            }
+
+    for (int i = 1; i <= ia; ++i)
+    {
+        if (!visited[i])
+        {
+            ++t;
+            cc_size[t] = 1;
+            dfs(i);
+        }
+    }
+
+    for (int i = 1; i <= t; ++i)
+        res += (cc_size[i] * (ia - cc_size[i]));
+
+    return 0;
+}

@@ -1,0 +1,1 @@
+{"name":"Local: QBSTR","url":"c:\\Users\\My PC\\Downloads\\DatNgo-Tin\\doi tuyen\\qhd 28 8 2023\\QBSTR\\QBSTR.cpp","tests":[{"id":1693298759963,"input":"abc1def2ghi3\nabcdefghi123","output":"10"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\My PC\\Downloads\\DatNgo-Tin\\doi tuyen\\qhd 28 8 2023\\QBSTR\\QBSTR.cpp","group":"local","local":true}

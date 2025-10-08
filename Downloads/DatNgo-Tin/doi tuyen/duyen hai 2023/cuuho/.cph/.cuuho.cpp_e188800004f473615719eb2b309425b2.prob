@@ -1,0 +1,1 @@
+{"name":"Local: cuuho","url":"c:\\Users\\My PC\\Downloads\\DatNgo-Tin\\duyen hai 2023\\cuuho\\cuuho.cpp","tests":[{"id":1695221429528,"input":"4 4 0 0\n1 2 1\n2 3 2\n3 4 3\n4 2 1","output":"1 3 2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\My PC\\Downloads\\DatNgo-Tin\\duyen hai 2023\\cuuho\\cuuho.cpp","group":"local","local":true}

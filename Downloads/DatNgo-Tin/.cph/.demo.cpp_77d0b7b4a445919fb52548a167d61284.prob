@@ -1,0 +1,1 @@
+{"name":"Local: demo","url":"c:\\Users\\My PC\\Downloads\\DatNgo-Tin\\demo.cpp","tests":[{"id":1731301885784,"input":"7\n1 2 3\n1 3 2\n2 4 2\n2 6 1\n4 5 1\n4 7 2\n","output":"44\n26\n85\n35\n43\n36\n73\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\My PC\\Downloads\\DatNgo-Tin\\demo.cpp","group":"local","local":true}
