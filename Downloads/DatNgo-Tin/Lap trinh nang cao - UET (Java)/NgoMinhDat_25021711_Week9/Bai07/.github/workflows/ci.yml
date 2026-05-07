@@ -1,0 +1,103 @@
+name: CI - Automated Code Reviewer
+
+# Trigger workflow on push and pull_request events
+on:
+  push:
+    branches:
+      - main
+      - master
+      - develop
+  pull_request:
+    branches:
+      - main
+      - master
+      - develop
+
+jobs:
+  checkstyle:
+    name: Checkstyle Code Review
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up JDK 11
+      - name: Set up JDK 11
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      # Step 3: Run Checkstyle with PR comments
+      - name: Run Checkstyle
+        run: mvn checkstyle:check
+
+      # Step 4: Post Checkstyle comments on PR
+      - name: Checkstyle PR Reviewer
+        uses: dbelyaev/action-checkstyle@v0.8.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          checkstyle_config: checkstyle.xml
+          checkstyle_version: '10.12.5'
+          reporter: github-pr-review
+          filter_mode: file
+          level: warning
+          fail_on_error: true
+
+  build:
+    name: Build and Test on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up JDK 11
+      - name: Set up JDK 11
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      # Step 3: Run Checkstyle
+      - name: Checkstyle Check
+        run: mvn checkstyle:check
+
+      # Step 4: Run Maven verify (includes test, coverage report, and 80% threshold check)
+      - name: Maven Verify
+        run: mvn verify
+
+      # Step 5: Upload JAR artifact
+      - name: Upload JAR artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: grade-classifier-jar
+          path: target/*.jar
+          retention-days: 30
+
+      # Step 6: Upload test results
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: target/surefire-reports/
+          retention-days: 30
+
+      # Step 7: Upload JaCoCo coverage report
+      - name: Upload JaCoCo coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco-coverage-report
+          path: target/site/jacoco/
+          retention-days: 30
