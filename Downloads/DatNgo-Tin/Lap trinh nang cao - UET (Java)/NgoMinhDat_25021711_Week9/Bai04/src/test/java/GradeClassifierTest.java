@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class GradeClassifierTest {
 
@@ -45,20 +47,25 @@ public class GradeClassifierTest {
         assertEquals("GPA không hợp lệ: 10.1", ex2.getMessage());
     }
 
-    // --- Test case với đường dẫn tệp tin hard-coded (Windows format) ---
-    // Sẽ gây lỗi trên Linux/macOS do giả định path separator là backslash
+    // --- Test case với đường dẫn tệp tin cross-platform ---
+    // Sử dụng java.nio.file.Path để đảm bảo hoạt động trên mọi hệ điều hành
     @Test
-    void testFilePath_WindowsFormat() {
-        // Hard-coded assumption: path separator là backslash (Windows)
-        // Test này sẽ FAIL trên Linux/macOS vì File.separator là '/'
-        assertEquals("Path separator phải là backslash (Windows)", 
-                     "\\", File.separator);
-        
-        // Tạo đường dẫn với hard-coded backslash
-        String path = "data\\grades.txt";
-        File file = new File(path);
+    void testFilePath_CrossPlatform() {
+        // Sử dụng java.nio.file.Paths để tạo đường dẫn cross-platform
+        Path path = Paths.get("data", "grades.txt");
         
         // Kiểm tra đường dẫn được tạo đúng
-        assertTrue(file.getPath().contains("\\"));
+        assertNotNull(path);
+        assertEquals("grades.txt", path.getFileName().toString());
+        
+        // Chuyển đổi sang File object nếu cần
+        File file = path.toFile();
+        assertEquals("grades.txt", file.getName());
+        
+        // Kiểm tra path separator phù hợp với hệ điều hành hiện tại
+        String expectedSeparator = File.separator;
+        assertTrue(path.toString().contains(expectedSeparator) || 
+                   path.toString().contains("/") || 
+                   path.toString().contains("\\"));
     }
 }
