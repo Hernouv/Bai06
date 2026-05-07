@@ -32,6 +32,7 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
+          cache: 'maven'
 
       # Step 3: Run Maven verify (includes test, coverage report, and 80% threshold check)
       - name: Maven Verify
